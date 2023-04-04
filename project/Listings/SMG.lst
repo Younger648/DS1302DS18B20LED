@@ -1,0 +1,203 @@
+C51 COMPILER V9.60.0.0   SMG                                                               04/04/2023 17:12:19 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE SMG
+OBJECT MODULE PLACED IN ..\SMG.obj
+COMPILER INVOKED BY: D:\software\keil\C51\BIN\C51.EXE ..\sourse\SMG.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\sourse) DEBUG O
+                    -BJECTEXTEND PRINT(.\Listings\SMG.lst) TABS(2) OBJECT(..\SMG.obj)
+
+line level    source
+
+   1          #include "head.h"
+   2          
+   3          
+   4          
+   5          unsigned char refer = 23;
+   6          
+   7          unsigned char code Seg_Table[19] = 
+   8          {
+   9          0xc0, //0
+  10          0xf9, //1
+  11          0xa4, //2
+  12          0xb0, //3
+  13          0x99, //4
+  14          0x92, //5
+  15          0x82, //6
+  16          0xf8, //7
+  17          0x80, //8
+  18          0x90, //9
+  19          0x88, //A
+  20          0x83, //b
+  21          0xc6, //C
+  22          0xa1, //d
+  23          0x86, //E
+  24          0x8e, //F
+  25          0xbf, //-
+  26          0x7f,
+  27          0xff
+  28          };
+  29          
+  30          
+  31          unsigned char code SMG_adr[8] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80};
+  32          
+  33          
+  34          
+  35          
+  36          
+  37          
+  38          void ds18b20_show()
+  39          {
+  40   1        static unsigned char i;
+  41   1        
+  42   1        unsigned adr,dat;
+  43   1        
+  44   1        i ++;
+  45   1        if(i == 5)
+  46   1        i = 1;
+  47   1        
+  48   1        switch(i)
+  49   1        {
+  50   2          case 1:
+  51   2            adr = 5;
+  52   2            dat = temper / 100;
+  53   2          break;
+  54   2          
+C51 COMPILER V9.60.0.0   SMG                                                               04/04/2023 17:12:19 PAGE 2   
+
+  55   2          case 2:
+  56   2            adr = 6;
+  57   2            dat = temper / 10 % 10;
+  58   2          break;
+  59   2              
+  60   2          case 3:
+  61   2            adr = 6;
+  62   2            dat = 17;
+  63   2          break;
+  64   2                  
+  65   2          case 4:
+  66   2            adr = 7;
+  67   2            dat = temper % 10;
+  68   2          break;
+  69   2                      
+  70   2            
+  71   2        }
+  72   1        SMG_config(SMG_adr[adr],Seg_Table[dat]);
+  73   1      }
+  74          
+  75          
+  76          
+  77          
+  78          
+  79          
+  80          void ds1302_show()
+  81          {
+  82   1        static unsigned char i;
+  83   1        unsigned dat1, dat2,dat3;
+  84   1        unsigned adr,dat;
+  85   1        
+  86   1        dat1 = (Time[2] >> 4)*10 +(Time[2] & 0x0f);
+  87   1        dat2 = (Time[1] >> 4)*10 +(Time[1] & 0x0f);
+  88   1        dat3 = (Time[0] >> 4)*10 +(Time[0] & 0x0f);
+  89   1        
+  90   1        i ++;
+  91   1        if(i == 9)
+  92   1        i = 1;
+  93   1        
+  94   1        switch(i)
+  95   1        {
+  96   2          case 1:
+  97   2            adr = 0;
+  98   2            dat = dat1 / 10;
+  99   2          break;
+ 100   2          
+ 101   2          case 2:
+ 102   2            adr = 1;
+ 103   2            dat = dat1 % 10;
+ 104   2          break;
+ 105   2              
+ 106   2          case 3:
+ 107   2            adr = 2;
+ 108   2            dat = 16;
+ 109   2          break;
+ 110   2                  
+ 111   2          case 4:
+ 112   2            adr = 3;
+ 113   2            dat = dat2 / 10;
+ 114   2          break;
+ 115   2          
+ 116   2          case 5:
+C51 COMPILER V9.60.0.0   SMG                                                               04/04/2023 17:12:19 PAGE 3   
+
+ 117   2            adr = 4;
+ 118   2            dat = dat2 % 10;
+ 119   2          break;
+ 120   2          
+ 121   2          case 6:
+ 122   2            adr = 5;
+ 123   2            dat = 16;
+ 124   2          break;
+ 125   2              
+ 126   2          case 7:
+ 127   2            adr = 6;
+ 128   2            dat = dat3 / 10;
+ 129   2          break;
+ 130   2                  
+ 131   2          case 8:
+ 132   2            adr = 7;
+ 133   2            dat = dat3 % 10;
+ 134   2          break;
+ 135   2                      
+ 136   2            
+ 137   2        }
+ 138   1        SMG_config(SMG_adr[adr],Seg_Table[dat]);
+ 139   1      }
+ 140          
+ 141          
+ 142          
+ 143          
+ 144          
+ 145          void refer_show()
+ 146          {
+ 147   1        static unsigned char i;
+ 148   1        
+ 149   1        unsigned adr,dat;
+ 150   1        
+ 151   1        i ++;
+ 152   1        if(i == 3)
+ 153   1        i = 1;
+ 154   1        
+ 155   1        switch(i)
+ 156   1        {
+ 157   2          case 1:
+ 158   2            adr = 6;
+ 159   2            dat = refer / 10;
+ 160   2          break;
+ 161   2          
+ 162   2          case 2:
+ 163   2            adr = 7;
+ 164   2            dat = refer % 10;
+ 165   2          break;
+ 166   2              
+ 167   2                  
+ 168   2                      
+ 169   2            
+ 170   2        }
+ 171   1        SMG_config(SMG_adr[adr],Seg_Table[dat]);
+ 172   1      }
+ 173          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    503    ----
+   CONSTANT SIZE    =     27    ----
+C51 COMPILER V9.60.0.0   SMG                                                               04/04/2023 17:12:19 PAGE 4   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4      16
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
