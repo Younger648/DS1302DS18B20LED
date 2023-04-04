@@ -18,7 +18,7 @@
 #include "ds1302config.h"
 #include "key.h"
 #include "menu.h"
-
+#include "led.h"
 
 
 #endif

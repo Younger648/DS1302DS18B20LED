@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   TIMER                                                             04/04/2023 17:13:19 PAGE 1   
+C51 COMPILER V9.60.0.0   TIMER                                                             04/04/2023 21:05:51 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE TIMER
@@ -20,7 +20,7 @@ line level    source
   10   1        TMOD |= 0x01;   //设置定时器模式
   11   1        
   12   1        
-  13   1        TL0 = 0x18;   //设置定时初始值
+  13   1        TL0 = 0x66;   //设置定时初始值
   14   1        TH0 = 0xFC;   //设置定时初始值
   15   1        
   16   1        TF0 = 0;    //清除TF0标志
@@ -38,21 +38,44 @@ line level    source
   28          
   29          void ServiceTimer0() interrupt 1
   30          {
-  31   1        TL0 = 0x18;   //设置定时初始值
-  32   1        TH0 = 0xFC;   //设置定时初始值
-  33   1        
-  34   1      
-  35   1        menu();
-  36   1      
-  37   1      }
+  31   1        
+  32   1        static unsigned char i = 0;
+  33   1        static unsigned char i_flag = 0;
+  34   1        P0 = 0xff;
+  35   1        TL0 = 0x66;   //设置定时初始值
+  36   1        TH0 = 0xFC;   //设置定时初始值
+  37   1        HC138(4);
+  38   1        
+  39   1        
+  40   1          if(temper / 10 > refer)
+  41   1        {
+  42   2          i ++;
+  43   2          if(i == 100)
+  44   2          {
+  45   3            i = 0;
+  46   3            i_flag = ~i_flag;
+  47   3            if(i_flag)
+  48   3              LED_config(1,0);
+  49   3            else
+  50   3              LED_config(1,1);
+  51   3          }
+  52   2        }
+  53   1        
+  54   1        
+C51 COMPILER V9.60.0.0   TIMER                                                             04/04/2023 21:05:51 PAGE 2   
+
+  55   1        
+  56   1        menu();
+  57   1      
+  58   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     86    ----
+   CODE SIZE        =    145    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----    ----
+   DATA SIZE        =      2    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

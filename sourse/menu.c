@@ -18,7 +18,7 @@ void Delay5ms()		//@12.000MHz
 }
 
 
-void menu()
+void menu()//主菜单界面
 {
 	if(Scon == 1)
 	ds18b20_show();
@@ -33,10 +33,7 @@ void menu()
 
 
 
-
-
-
-void menu_key()
+void menu_key()//主菜单按键
 {
 	key(1);
 	if(C4 == 0)
@@ -54,6 +51,59 @@ void menu_key()
 	}
 		
 }
+
+
+
+
+
+
+
+void refer_key()//参数按键增加和减少
+{
+	key(3);
+	if(C4 == 0)
+	{
+		Delay5ms();
+		if(C4 == 0)
+		{
+			refer ++;
+		}
+		while(C4 == 0);
+	}
+	
+	
+	
+	key(4);
+	if(C4 == 0)
+	{
+		Delay5ms();
+		if(C4 == 0)
+		{
+			refer --;
+		}
+		while(C4 == 0);
+	}
+	
+	
+	
+	
+	
+	
+/*******参数限制*******/	
+	if(refer >= 99)
+	{
+		refer = 99;
+	}
+	
+	
+	if(refer <= 9)
+	{
+		refer = 9;
+	}
+}
+
+
+
 
 
 

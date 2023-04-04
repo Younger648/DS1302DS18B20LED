@@ -5,6 +5,13 @@
 
 void main()
 {
+//	P0 = 0x00;
+//	P2 = 0xA0;
+//	P2 = 0x80;
+//	P0 = 0xFF;
+//	P2 = 0x00;
+	
+	
 	Write_ds1302_config();
 	Timer0Init();
 	
@@ -12,7 +19,7 @@ void main()
 	{
 		ds18b20_config();
 		Read_ds1302_config();
-		
+		refer_key();
 		menu_key();
 		
 	}
