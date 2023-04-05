@@ -18,4 +18,7 @@ sbit C3 = P3^5;
 sbit C2 = P4^2;
 sbit C1 = P4^4;
 
+sbit jidianqi = P0^4;
+sbit BUZZ = P0^6;
+
 #endif

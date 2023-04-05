@@ -13,7 +13,9 @@ void main()
 	
 	
 	Write_ds1302_config();
+	EA = 1;
 	Timer0Init();
+	EA = 0;
 	
 	while(1)
 	{

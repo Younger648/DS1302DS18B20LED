@@ -446,6 +446,11 @@
               <FileType>1</FileType>
               <FilePath>..\sourse\led.c</FilePath>
             </File>
+            <File>
+              <FileName>jidianqi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\sourse\jidianqi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -515,6 +520,11 @@
               <FileName>led.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\sourse\led.h</FilePath>
+            </File>
+            <File>
+              <FileName>jidianqi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\sourse\jidianqi.h</FilePath>
             </File>
           </Files>
         </Group>

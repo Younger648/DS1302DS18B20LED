@@ -10,6 +10,7 @@
 "..\ds1302config.obj",
 "..\key.obj",
 "..\menu.obj",
-"..\led.obj" 
+"..\led.obj",
+"..\jidianqi.obj" 
 TO "..\ds1302" 
 PRINT(".\Listings\ds1302.m51") RAMSIZE(256) 

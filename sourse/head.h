@@ -19,6 +19,7 @@
 #include "key.h"
 #include "menu.h"
 #include "led.h"
+#include "jidianqi.h"
 
 
 #endif

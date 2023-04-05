@@ -3,6 +3,6 @@
 
 
 void LED_config(unsigned char led_adr,unsigned led_dat);
-void LED_F();
+void LED_temp();
 
 #endif
